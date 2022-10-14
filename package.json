@@ -1,0 +1,18 @@
+{
+  "name": "codial",
+  "version": "1.0.0",
+  "description": "my all social media web applocation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "social"
+  ],
+  "author": "Hriday Kumar Pranit",
+  "license": "ISC",
+  "dependencies": {
+    "expess": "^0.0.1-security",
+    "express": "^4.18.2"
+  }
+}
