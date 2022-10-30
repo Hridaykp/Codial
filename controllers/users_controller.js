@@ -1,13 +1,18 @@
-const User = require("../models/user")
+const User = require("../models/user");
+const { use } = require("../routes");
+
 module.exports.profile = function(req, res){
-    // res.end("<h1>User Profile</h1>")
     return res.render('user_profile', {
-        title:"User Profile"
+        title:"User Profile",
+        // user: user
     });
 }
 
 //for render the sugn-up page
 module.exports.signUp = function(req, res){
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profile');
+    }
     return res.render('user_sign_up', {
         title: "Codial | Sign UP"
     })
@@ -16,6 +21,9 @@ module.exports.signUp = function(req, res){
 
 //render the sign-in page
 module.exports.signIn = function(req, res){
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profile');
+    }
     return res.render('user_sign_in', {
         title: "Codial | Sign In"
     })
@@ -47,6 +55,45 @@ module.exports.create = function(req, res){
 }
 
 //sign in and create a session for the user
-module.exports.createSession = function(req, res){
+// module.exports.createSession = function(req, res){
+    //steps to authenticate->
+    //find the user
+//     User.findOne({email : req.body.email}, function(err, user){
+//         if(err){
+//             console.log("Error in creating user signing in");return;
+//         }
+//         //handle user found
+//         if(user){
+//             //handle password doesn't match
+//             if(user.password != req.body.password){
+//                 return res.redirect("back");
+//             }
+//              //handle session creation
+//              res.cookie('user_id', user.id);
+//              return res.redirect('/users/profile');
+//         }
+//         else{
+//             //handle user not found
+//             return res.redirect("back");
+//         }
+//     })
+// }
 
+module.exports.createSession = function(req, res){
+    return res.redirect('/');
 }
+
+module.exports.destryoSession = function(req, res){
+    req.logout(function(err) {
+        if (err) { 
+            return next(err); 
+        }
+        res.redirect('/');
+      });
+}
+
+   
+
+
+    
+
