@@ -1,5 +1,5 @@
 const User = require("../models/user");
-const { use } = require("../routes");
+
 
 module.exports.profile = function(req, res){
     return res.render('user_profile', {

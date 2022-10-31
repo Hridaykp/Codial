@@ -4,7 +4,7 @@ const commentSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    //comments belong to the user
+    //comment belongs to the user
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'

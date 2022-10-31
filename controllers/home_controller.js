@@ -1,4 +1,3 @@
-const { populate } = require('../models/comment');
 const Post = require('../models/post');
 
 module.exports.home = function(req, res){
@@ -13,10 +12,12 @@ module.exports.home = function(req, res){
     .populate('user')
     .populate({
         path: 'comments',
-        populate: [{path:'user'}, {path:'posts'}]
-    }) 
+        populate: {
+            path: 'user'
+        }
+    })
     .exec(function(err, posts){
-        // console.log(posts)
+        // console.log(posts);
         return res.render('home', {
             title: "Codial | Home",
             posts: posts

@@ -10,13 +10,9 @@ module.exports.create = function(req, res){
                 user: req.user._id
             }, function(err, comment){
                 // handle error
-                // post.comments.push(comment);
-                if (Array.isArray(comment.venue)) {
-                    comment.venue.push(comment);
-                } else {
-                    comment.venue = [comment];
-                }
+                post.comments.push(comment);
                 post.save();
+                console.log(post)
                 res.redirect('/');
             }
 

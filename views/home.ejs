@@ -1,7 +1,7 @@
 <h1>
   Codial / <%= title %>
  </h1>
- <% console.log("hiii");console.log(posts); %> 
+
  <section id="feed-posts">
   <h4>Posts</h4>
   <% if (locals.user){%>
@@ -23,8 +23,8 @@
                        <%= post.user.name %>
                </small>
                </p>
-               <div class="post-comment">
-                       <% if(locals.user){%>
+               <div class="post-comments">
+                       <% if(locals.user){ %>
                         <form action="/comments/create" method="post">
                          <input type="text" name="content"
                           placeholder="type here to add comment..."
@@ -39,12 +39,9 @@
                           <ul
                            id="post-comments-<%= post._id %>">
 
-                          
-                           <% for(comment of post.comments){%>
- 
+                           <% for(comment of post.comments){ %>        
                                    <p>
-                                    <%= comment.content
-                                     %>
+                                    <%= comment.content%>
                                      <br>
                                      <small>
                                       <%= comment.user.name
