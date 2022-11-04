@@ -12,6 +12,7 @@
   "author": "Hriday Kumar Pranit",
   "license": "ISC",
   "dependencies": {
+    "connect-flash": "^0.1.1",
     "connect-mongo": "^4.6.0",
     "cookie-parser": "^1.4.6",
     "ejs": "^3.1.8",
@@ -21,6 +22,7 @@
     "express-session": "^1.17.3",
     "http": "^0.0.1-security",
     "mongoose": "^6.6.5",
+    "multer": "^1.4.5-lts.1",
     "node-sass-middleware": "^1.0.1",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0"
