@@ -1,5 +1,6 @@
 const User = require("../models/user");
-
+const fs = require('fs');
+const path = require('path');
 
 module.exports.profile = function(req, res){
     User.findById(req.params.id, function(err, user){
@@ -10,15 +11,8 @@ module.exports.profile = function(req, res){
 })}
 
 module.exports.update = async function(req, res){
-    // if(req.user.id == req.params.id){
-    //     User.findByIdAndUpdate(req.params.id, req.body, function(err, user){
-    //         return res.redirect('back');
-    //     })
-    // }
-    // else{
-    //     return res.status(401).send('Unauthorized');
-    // }
-    if(req.user.id == req.params.id){
+   
+     if(req.user.id == req.params.id){
         try{
             let user = await User.findById(req.params.id);
             User.uploadedAvatar(req, res, function(err){
@@ -28,6 +22,9 @@ module.exports.update = async function(req, res){
                 user.name = req.body.name;
                 user.email = req.body.email;
                 if(req.file){
+                     if(user.avatar){
+                       fs.unlinkSync(path.join(__dirname, '..', user.avatar))
+                     }
                     //saving the path of the uplodding file into the avatar field inthe user
                     user.avatar = User.avatarPath + '/' + req.file.filename;
                 }
@@ -91,44 +88,21 @@ module.exports.create = function(req, res){
     })
 }
 
-//sign in and create a session for the user
-// module.exports.createSession = function(req, res){
-    //steps to authenticate->
-    //find the user
-//     User.findOne({email : req.body.email}, function(err, user){
-//         if(err){
-//             console.log("Error in creating user signing in");return;
-//         }
-//         //handle user found
-//         if(user){
-//             //handle password doesn't match
-//             if(user.password != req.body.password){
-//                 return res.redirect("back");
-//             }
-//              //handle session creation
-//              res.cookie('user_id', user.id);
-//              return res.redirect('/users/profile');
-//         }
-//         else{
-//             //handle user not found
-//             return res.redirect("back");
-//         }
-//     })
-// }
-
+// sign in and create a session for the user
 module.exports.createSession = function(req, res){
     req.flash('success', 'Logged in Successfully');
     return res.redirect('/');
 }
 
-module.exports.destryoSession = function(req, res){
+
+module.exports.destryoSession = function(req, res, next){
     req.logout(function(err) {
-        if (err) { 
-            return next(err); 
-        }
-        req.flash('success', 'You have logged out');
+        if (err) { return next(err); }
         res.redirect('/');
       });
+    req.flash('success', 'You have logged out');
+    return res.redirect('/');
+      
 }
 
    
