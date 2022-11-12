@@ -1,7 +1,7 @@
 const User = require("../models/user");
 const fs = require('fs');
 const path = require('path');
-
+// const path_for_mailer = require('../mailers/comments_mailer');
 module.exports.profile = function(req, res){
     User.findById(req.params.id, function(err, user){
     return res.render('user_profile', {
@@ -67,6 +67,7 @@ module.exports.signIn = function(req, res){
 //get the sign up data
 module.exports.create = function(req, res){
     if(req.body.password != req.body.confirm_password){
+        req.flash('error', 'Passwords do not match');
         return res.redirect('back');
     }
 
@@ -76,13 +77,16 @@ module.exports.create = function(req, res){
         }
         if(!user){
             User.create(req.body, function(err, user){
-                if(err){
-                    console.log("Error in creating user signing up");return;
-                }
+                if(err){req.flash('error', err); return}
                 return res.redirect('/users/sign-in')
             })
         }
         else{
+            // path_for_mailer.newComment(
+            //     'You have signed up, login to continue!'
+            // ) ;
+            
+            req.flash('success', 'You have signed up, login to continue!');
             return res.redirect('back');
         }
     })
@@ -97,11 +101,13 @@ module.exports.createSession = function(req, res){
 
 module.exports.destryoSession = function(req, res, next){
     req.logout(function(err) {
-        if (err) { return next(err); }
-        res.redirect('/');
+        if (err) { 
+            return next(err); 
+        }
+        req.flash('success', 'You have logged out');
+        return res.redirect('/');
       });
-    req.flash('success', 'You have logged out');
-    return res.redirect('/');
+  
       
 }
 
