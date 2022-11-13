@@ -1,28 +1,32 @@
 const mongoose = require("mongoose");
 
-const postSchema = new mongoose.Schema(
-  {
+const postSchema = new mongoose.Schema({
     content: {
       type: String,
       required: true,
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
+      ref: "User",
     },
     //inclue the array of ids of all comments in this postSchema itself
-    comments:[
-       {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Comment',
-    }
-  ],
+    comments: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Comment",
+      },
+    ],
+    likes:[
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Like'
+        }
+    ]
   },
   {
     timestamps: true,
   }
 );
 
-const Post = mongoose.model('Post', postSchema);
+const Post = mongoose.model("Post", postSchema);
 module.exports = Post;
-  

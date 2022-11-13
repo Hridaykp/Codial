@@ -33,6 +33,12 @@
             <small>
             ${ post.user.name }
             </small>
+            <br>
+            <small>
+                <a class="toggle-like-button" data-likes="0" href="/likes/toggle/?id=${post._id}&type=Post">
+                    0 Likes
+                </a>      
+            </small>
             </p>
             <div class="post-comments">
                 <form action="/comments/create" method="POST">
