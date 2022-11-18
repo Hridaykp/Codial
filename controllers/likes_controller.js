@@ -1,7 +1,8 @@
+// const env = require('../config/environment');
+
 const Like = require('../models/like');
 const Comment = require('../models/comment');
 const Post = require('../models/post');
-
 
 module.exports.toggleLike = async function(req, res){
     try{

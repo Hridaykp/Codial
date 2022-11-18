@@ -4,7 +4,8 @@
   "description": "my all social media web applocation",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prod_start": "NODE_ENV=production nodemon index.js"
   },
   "keywords": [
     "social"
@@ -16,6 +17,7 @@
     "connect-mongo": "^4.6.0",
     "cookie-parser": "^1.4.6",
     "crypto": "^1.0.1",
+    "dotenv": "^16.0.3",
     "ejs": "^3.1.8",
     "expess": "^0.0.1-security",
     "express": "^4.18.2",
