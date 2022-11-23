@@ -1,0 +1,16 @@
+[0mGET /js/home_post_comments.js [33m404[0m 94.357 ms - 163[0m
+[0mGET /js/home_posts.js [33m404[0m 18.361 ms - 155[0m
+[0mGET /js/toggle_likes.js [33m404[0m 35.666 ms - 157[0m
+[0mGET /js/chat_engine.js [33m404[0m 39.174 ms - 156[0m
+[0mGET /users/profile/63762f0955d87c390a242128 [36m302[0m 16.340 ms - 72[0m
+[0mGET /users/sign-in [36m304[0m 35.996 ms - -[0m
+[0mGET /css/layout.css [33m404[0m 12.772 ms - 153[0m
+[0mGET /css/header.css [33m404[0m 15.529 ms - 153[0m
+[0mGET /css/footer.css [33m404[0m 17.791 ms - 153[0m
+[0mGET /css/header.css [33m404[0m 6.366 ms - 153[0m
+[0mGET /css/layout.css [33m404[0m 13.338 ms - 153[0m
+[0mGET /css/footer.css [33m404[0m 8.146 ms - 153[0m
+[0mGET /users/sign-in [36m304[0m 37.630 ms - -[0m
+[0mGET /css/layout.css [33m404[0m 14.593 ms - 153[0m
+[0mGET /css/header.css [33m404[0m 37.728 ms - 153[0m
+[0mGET /css/footer.css [33m404[0m 27.209 ms - 153[0m
